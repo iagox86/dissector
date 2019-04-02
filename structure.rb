@@ -272,8 +272,8 @@ class Structure
       field.endian = Listbox.new(field.endian, Field::ENDIANS).prompt("Please select a byte order")
       return if(field.endian.nil?)
 
-      field.colour = ColourChooser.new(field.colour).prompt("Please select a colour --> ")
-      return if(field.colour.nil?)
+      field.color = ColorChooser.new(field.color).prompt("Please select a color --> ")
+      return if(field.color.nil?)
 
       # Figure out what parents/offsets are legal
       references = get_possible_references_to(data, field, position)

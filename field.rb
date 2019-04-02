@@ -14,7 +14,7 @@ class Field
 
   OPERATORS    = [ '==', '!=', '&', '|', '^', '>', '>=', '<', '<=' ]
 
-  attr_accessor :name, :order, :parent, :offset, :type, :endian, :colour, :length, :is_optional, :optional_field, :optional_operator, :optional_value
+  attr_accessor :name, :order, :parent, :offset, :type, :endian, :color, :length, :is_optional, :optional_field, :optional_operator, :optional_value
 
   def initialize(position, type, endian)
     @name        = nil
@@ -24,7 +24,7 @@ class Field
     @endian      = endian
 
     @parent      = nil
-    @colour      = nil
+    @color      = nil
     @length      = nil
 
     @optional_field = nil
