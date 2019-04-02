@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require(:default)
 
-require 'colour_chooser'
+require 'color_chooser'
 require 'generate'
 require 'listbox'
 require 'packet'
@@ -64,7 +64,7 @@ begin
   Ncurses::KEY_ESCAPE = 27
   Ncurses::KEY_TAB    = ?\t
 
-  ColourChooser.initialize()
+  ColorChooser.initialize()
 
   window = Ncurses.stdscr
 
@@ -74,11 +74,11 @@ begin
   @structure_common   = Structure.new()
   begin
     File.open(ARGV[0] + '.save', "rb") do |f|
-      @structure_incoming, @structure_outgoing, @structure_common, @generate, @same_structure, ColourChooser.colour = Marshal.load(f)
+      @structure_incoming, @structure_outgoing, @structure_common, @generate, @same_structure, ColorChooser.color = Marshal.load(f)
     end
   rescue Exception
   end
-  ColourChooser.colour = ColourChooser.colour || 0
+  ColorChooser.color = ColorChooser.color || 0
 
   if(@same_structure.nil?)
     @same_structure = Listbox.new(0, {false=>"Yes", true=>"No"}).prompt("Do you want to use separate structures for incoming/outgoing packets?")
@@ -109,7 +109,7 @@ begin
 
     # Save the current states
     File.open(ARGV[0] + '.save', "wb") do |f|
-      Marshal.dump([@structure_incoming, @structure_outgoing, @structure_common, @generate, @same_structure, ColourChooser.colour], f)
+      Marshal.dump([@structure_incoming, @structure_outgoing, @structure_common, @generate, @same_structure, ColorChooser.color], f)
     end
 
   end

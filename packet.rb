@@ -17,7 +17,7 @@ class Packet
     loop do
       @hex_window.clear_fields()
       @structure.each_position_length_field(@data) do |position, length, field|
-        @hex_window.add_field(field.name, position, length, field.colour)
+        @hex_window.add_field(field.name, position, length, field.color)
       end
 
       pos, type, endian = @hex_window.get_input()

@@ -1,4 +1,4 @@
-require 'colour_chooser'
+require 'color_chooser'
 require 'field'
 require 'hex'
 require 'structure'
@@ -100,9 +100,9 @@ class HexWindow
       hex_y,   hex_x   = Hex.get_hex_coordinates(i)
       ascii_y, ascii_x = Hex.get_ascii_coordinates(i)
 
-      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_NORMAL, ColourChooser::COLOUR_OK, nil)
-      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_NORMAL, ColourChooser::COLOUR_OK, nil)
-      @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_NORMAL, ColourChooser::COLOUR_OK, nil)
+      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_NORMAL, ColorChooser::COLOR_OK, nil)
+      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_NORMAL, ColorChooser::COLOR_OK, nil)
+      @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_NORMAL, ColorChooser::COLOR_OK, nil)
     end
 
     # Mark all defined fields (this should happen before highlighting)
@@ -111,9 +111,9 @@ class HexWindow
           hex_y,   hex_x   = Hex.get_hex_coordinates(i)
           ascii_y, ascii_x = Hex.get_ascii_coordinates(i)
 
-          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_NORMAL, field[:colour], nil)
-          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_NORMAL, field[:colour], nil)
-          @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_NORMAL, field[:colour], nil)
+          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_NORMAL, field[:color], nil)
+          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_NORMAL, field[:color], nil)
+          @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_NORMAL, field[:color], nil)
         end
     end
 
@@ -123,9 +123,9 @@ class HexWindow
       hex_y,   hex_x   = Hex.get_hex_coordinates(i)
       ascii_y, ascii_x = Hex.get_ascii_coordinates(i)
 
-      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_NORMAL, ColourChooser::COLOUR_ERROR, nil)
-      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_NORMAL, ColourChooser::COLOUR_ERROR, nil)
-      @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_NORMAL, ColourChooser::COLOUR_ERROR, nil)
+      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_NORMAL, ColorChooser::COLOR_ERROR, nil)
+      @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_NORMAL, ColorChooser::COLOR_ERROR, nil)
+      @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_NORMAL, ColorChooser::COLOR_ERROR, nil)
     end
 
 
@@ -137,11 +137,11 @@ class HexWindow
       if(field) # Highlight the full field
         highlight_start  = field[:position]
         highlight_length = field[:size]
-        colour = field[:colour] || ColourChooser::COLOUR_OK
+        color = field[:color] || ColorChooser::COLOR_OK
       else # Only highlight the current position
         highlight_start = @hex.pos
         highlight_length = 1
-        colour = ColourChooser::COLOUR_OK
+        color = ColorChooser::COLOR_OK
       end
 
       highlight_start.upto(highlight_start + highlight_length - 1) do |i|
@@ -149,9 +149,9 @@ class HexWindow
           hex_y,   hex_x   = Hex.get_hex_coordinates(i)
           ascii_y, ascii_x = Hex.get_ascii_coordinates(i)
  
-          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_REVERSE, colour, nil)
-          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_REVERSE, colour, nil)
-          @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_REVERSE, colour, nil)
+          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset,     1, Ncurses::A_REVERSE, color, nil)
+          @window.mvchgat(hex_y   + @y_offset, hex_x   + @x_offset + 1, 1, Ncurses::A_REVERSE, color, nil)
+          @window.mvchgat(ascii_y + @y_offset, ascii_x + @x_offset,     1, Ncurses::A_REVERSE, color, nil)
         end
       end
     end
@@ -164,8 +164,8 @@ class HexWindow
 
   # Add a field to the hex window so it can be highlighted. This will have
   # no actual information about the field, and should be considered 'dumb'. 
-  def add_field(name, position, size, colour)
-    @fields[name] = { :name => name, :position => position, :size => size, :colour => colour }
+  def add_field(name, position, size, color)
+    @fields[name] = { :name => name, :position => position, :size => size, :color => color }
   end
 
   def clear_fields() 
